@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your HTML Document</title>
+    <link rel="stylesheet" href="static styles.css">
+</head>
+<body>
+    <div class="paper">
+        <div class='description'>
+            <h2 style="padding: 3%; padding-bottom: 1%; margin: 0%;">Welcome to Focal Points!</h2>
+            <p style="padding: 5%; padding-top: 0%; font-size: 1.3em;">Focal points is a note taking app that accommodates for your Gen-Z, non-existent attention span!</p>
+        </div>
+        <div class="login_register">
+            <a href="{% url 'user_login' %}">
+                <button class="custom-button" style="">Log in</button>
+            </a>
+            <a href="{% url 'user_register' %}">
+                <button class="custom-button">Sign up</button>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
