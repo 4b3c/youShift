@@ -1,63 +1,136 @@
+/*@import 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300';*/
+
 body {
-    background-color: #a5a5a5;
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
-}
-.paper {
-    background-color: white;
-    width: 90vh;
-    height: 100vh;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-    justify-content: center;
-    background-image: url("{% static 'notepaper.jpeg' %}");
-    background-size: 100% 100%;
-    background-position: right top;
-}
-.description {
-    margin-top: 37%;
-    margin-left: 20%;
-    width: 60%;
-    height: 20%;
-    background-color: white;
-    border-radius: 10px;
-    border-width: 30px;
-    border-color: #002041;
-    border-style: solid;
-    text-align: center;
-}
-.login_register {
-    margin-top: 5%;
-    margin-left: 20%;
-    width: 60%;
-    height: 21%;
-    background-color: white;
-    border-radius: 10px;
-    border-width: 30px;
-    border-color: #002041;
-    border-style: solid;
-    text-align: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-style: italic;
+  background-color: #66A182;
 }
 
-/* Custom button styles */
-.custom-button {
-    background-color: white; /* Change the background color to your desired color */
-    color: black; /* Change the text color to your desired color */
-    border: none;
-    padding: 10px 10px;
-    font-size: 16px; /* Change the font size as needed */
-    border-radius: 5px; /* Add rounded corners if desired */
-    cursor: pointer;
-    margin: 5%;
-    width: 60%;
-    border: solid black;
+div[class*=box] {
+  height: 20%;
+  width: 100%; 
+  display: flex;
+  align-items: flex-end;
 }
 
-.custom-button:hover {
-    background-color: #002041; /* Change the hover background color to your desired color */
-    color: white;
+.box-1 { background-color: #FF6766; }
+.box-2 { background-color: #3C3C3C; }
+
+.btn {
+  line-height: 40px;
+  height: 40px;
+  text-align: center;
+  width: 200px;
+  cursor: pointer;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+
+.btn-two {
+  color: #FFF;
+  transition: all 0.3s;
+  position: relative;
+}
+.btn-two span {
+  z-index: 2; 
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.btn-two::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.btn-two::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.btn-two:hover {
+  letter-spacing: 2px;
+  transition: all 0.3s;
+}
+.btn-two:hover::before {
+  transform: rotate(-5deg);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.btn-two:hover::after {
+  transform: rotate(5deg);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.title {
+  margin-left: 5%;
+  margin-right: 30%;
+  cursor: default;
+
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 130px;
+  font-style: italic;
+}
+.title span {
+  color: rgba(255, 255, 255, 1.0);
+}
+
+.dropdown {
+  align-self: flex-end;
+  line-height: 35px;
+  text-align: center;
+  color: rgba(255, 255, 255, 1.0);
+
+  width: 120px;
+  height: 40px;
+  margin-right: 30px;
+  margin-top: 30px;
+  cursor: pointer;
+
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 1.0);
+  transition: all 0.3s;
+}
+.dropdown:hover {
+  height: 120px;
+  background-color: rgba(255, 255, 255, 0.05);
+  letter-spacing: 2px;
+  transition: all 0.3s;
+}
+.btn-three {
+  width: 100;
+  height: 30;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 15px;
+  border-style: solid;
+  margin-left: 30;
+  margin-top: 30;
+  background-color: rgba(255, 255, 255, 1.0);
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.btn-three:hover {
+  box-shadow: -3px -3px rgba(0, 0, 0, 0.2);
+}

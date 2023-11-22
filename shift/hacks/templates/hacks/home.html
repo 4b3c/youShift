@@ -2,25 +2,35 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Your HTML Document</title>
-    <link rel="stylesheet" href="static styles.css">
+    <title>youShift</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
+
 <body>
-    <div class="paper">
-        <div class='description'>
-            <h2 style="padding: 3%; padding-bottom: 1%; margin: 0%;">Welcome to Focal Points!</h2>
-            <p style="padding: 5%; padding-top: 0%; font-size: 1.3em;">Focal points is a note taking app that accommodates for your Gen-Z, non-existent attention span!</p>
+
+    <div class="box-2">
+        <div class="title">
+            <span>youShift</span>
         </div>
-        <div class="login_register">
-            <a href="{% url 'user_login' %}">
-                <button class="custom-button" style="">Log in</button>
-            </a>
-            <a href="{% url 'user_register' %}">
-                <button class="custom-button">Sign up</button>
-            </a>
+        <div class="btn btn-two">
+            <span>Log in</span>
+        </div>
+        <div class="btn btn-two">
+            <span>Sign up</span>
         </div>
     </div>
+
+
+    <div class="btn-three">
+        <span>click this</span>
+    </div>
+
+    <div class="dropdown">
+        <span>dropdown</span>
+    </div>
+
 </body>
 
 </html>
