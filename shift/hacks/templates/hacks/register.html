@@ -1,66 +1,25 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Register</title>
-    <style type="text/css">
-        /* styles.css */
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f0f0;
-        }
-
-        form {
-            width: 300px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        h2 {
-            color: #0074D9;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 90%;
-            padding: 5%;
-            margin: 5% 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        input[type="submit"] {
-            background-color: #0074D9; /* Change the background color to your desired color */
-            color: white; /* Change the text color to your desired color */
-            border: none;
-            padding: 10px 10px;
-            font-size: 16px; /* Change the font size as needed */
-            border-radius: 5px; /* Add rounded corners if desired */
-            cursor: pointer;
-            margin: 5%;
-            width: 60%;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056A0;
-        }       
-
-    </style>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
-<body>
+
+<body style="text-align: center;">
     <form method="post">
         {% csrf_token %}
-        <h2>Welcome!</h2>
-        <div class="form-container">
-            {{ form.username.label_tag }} {{ form.username }}
-            {{ form.email.label_tag }} {{ form.email }}
-            {{ form.password1.label_tag }} {{ form.password1 }}
-            {{ form.password2.label_tag }} {{ form.password2 }}
-            <input type="submit" value="Register">
-        </div>
+        <h2 style="color: white;">Welcome!</h2>
+        <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" placeholder="Username" required>
+        <br>
+        <input type="password" id="{{ form.password1.id_for_label }}" name="{{ form.password1.name }}" placeholder="Password" required>
+        <br>
+        <input type="password" id="{{ form.password2.id_for_label }}" name="{{ form.password2.name }}" placeholder="Confirm Password" required>
+        <br>
+        <input type="submit" value="Register">
     </form>
 </body>
+
 </html>

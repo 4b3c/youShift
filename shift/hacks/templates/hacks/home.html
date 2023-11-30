@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <title>Changed title ???</title>
+    <title>Shift</title>
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
 
@@ -13,8 +13,8 @@
     <div class="box">
         <div class="title" style="left: 20px;">Shift</div>
         <div class="box" style="width: 416px; justify-content: flex-end;">
-            <div class="btn">Log in</div>
-            <div class="btn">Sign up</div>
+            <a href="{% url 'user_login' %}" class="btn">Log in</a>
+            <a href="{% url 'user_register' %}" class="btn">Sign up</a>
         </div>
     </div>
 

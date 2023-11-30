@@ -14,14 +14,13 @@ def user_register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            # Redirect to a success page or home page
-            return redirect('file_list')  # Change 'home' to your desired URL name
+            return redirect('home')
         else:
             messages.error(request, 'Invalid username or password')
     else:
         form = UserCreationForm()
     
-    return render(request, 'fonot/register.html', {'form': form})
+    return render(request, 'hacks/register.html', {'form': form})
 
 
 def user_login(request):
@@ -30,14 +29,13 @@ def user_login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            # Redirect to a success page or home page
-            return redirect('file_list')  # Change 'home' to your desired URL name
+            return redirect('home')
         else:
             messages.error(request, 'Invalid username or password')
     else:
         form = AuthenticationForm()
     
-    return render(request, 'fonot/login.html', {'form': form})
+    return render(request, 'hacks/login.html', {'form': form})
 
 
 def user_logout(request):

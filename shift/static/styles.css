@@ -1,7 +1,7 @@
 
 @font-face {
   font-family: 'Typo';
-  src: url('fonts/Typo_Round_Regular_Demo.otf') format('opentype'); /* adjust the path if needed */
+  src: url('fonts/Typo_Round_Regular_Demo.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -51,6 +51,7 @@ body {
   width: 200px;
   cursor: pointer;
   margin-right: 16px;
+  text-decoration: none;
 }
 
 .btn::before {
@@ -89,3 +90,57 @@ body {
   transform: rotate(5deg);
   background-color: rgba(255, 255, 255, 0.05);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+form {
+    width: 400px;
+    margin: 5% auto;
+    padding: 20px;
+    background-color: #222222;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 90%;
+    padding: 4%;
+    margin: 5% 0;
+    border: 1px solid white;
+    background-color: #3C3C3C;
+    border-radius: 5px;
+    color: white;
+}
+
+input[type="submit"] {
+    background-color: #3C3C3C;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5%;
+    width: 60%;
+}
+
+input[type="submit"]:hover {
+    background-color: #c17171;
+/*    color: black;*/
+}       
