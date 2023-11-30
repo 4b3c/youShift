@@ -18,7 +18,18 @@
         </div>
     </div>
 
-    <a href="{% url 'new_shift' %}" class="new-shift">+</a>
+    <div class="container">
+        <a href="{% url 'new_shift' %}" class="new-shift">+</a>
+        <div class="post-container">
+            {% for post in shift_posts %}
+            <div class="shift-post">
+                <h1 style="margin-bottom: 5px;">{{ post.title }}</h1>
+                <p style="margin: 5px">{{ post.content }}</p>
+                <p style="margin: 5px">Created by {{ post.author.username }} on {{ post.created_at.month }} / {{ post.created_at.day }} / {{ post.created_at.year }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
 </body>
 

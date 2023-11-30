@@ -3,12 +3,15 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from .forms import ShiftPostForm
+from .models import Shift_post
 
 
 
 def home(request):
     if request.user.is_authenticated:
-        return render(request, 'hacks/myhome.html')
+        # should be changed eventually to show the specific user's feed
+        shift_posts = Shift_post.objects.all()
+        return render(request, 'hacks/myhome.html', {'shift_posts': shift_posts})
     return render(request, 'hacks/home.html')
 
 
