@@ -2,9 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib import messages
+from .forms import ShiftPostForm
+
 
 
 def home(request):
+    if request.user.is_authenticated:
+        return render(request, 'hacks/myhome.html')
     return render(request, 'hacks/home.html')
 
 
@@ -42,3 +46,21 @@ def user_logout(request):
     if request.user.is_authenticated:
         logout(request)
     return redirect('home')
+
+
+def profile(request):
+    return render(request, 'hacks/profile.html')
+
+
+def new_shift(request):
+    if request.method == 'POST':
+        form = ShiftPostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('home')
+    else:
+        form = ShiftPostForm()
+
+    return render(request, 'hacks/newshift.html', {'form': form})
