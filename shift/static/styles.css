@@ -141,7 +141,6 @@ input[type="submit"]:hover {
   color: white;
   position: absolute;
   left: 17%;
-/*  margin-right: 60%;*/
   margin-bottom: 740px;
   width: 100px;
   height: 100px;
@@ -177,4 +176,20 @@ input[type="submit"]:hover {
   display: flex;
   justify-content: center;
   text-decoration: none;
+}
+
+
+
+
+
+
+textarea[type="text"] {
+  width: 90%;
+  height: 200px;
+  padding: 4%;
+  margin: 5% 0;
+  border: 1px solid white;
+  background-color: #3C3C3C;
+  border-radius: 5px;
+  color: white;
 }

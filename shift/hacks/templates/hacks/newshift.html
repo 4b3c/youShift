@@ -1,18 +1,23 @@
-<!-- your_app/templates/create_post.html -->
+{% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Post</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
-<body>
-    <h2>Create a new post</h2>
+
+<body style="text-align: center;">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Create Post</button>
+        <h2 style="color: white;">New shiftpost</h2>
+        <input type="text" id="{{ form.title.id_for_label }}" name="{{ form.title.name }}" placeholder="Title" required>
+        <br>
+        <textarea type="text" id="{{ form.content.id_for_label }}" name="{{ form.content.name }}" placeholder="Content" required></textarea>
+        <br>
+        <input type="submit" value="Create Post">
     </form>
 </body>
+
 </html>
