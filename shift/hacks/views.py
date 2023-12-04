@@ -12,7 +12,8 @@ def home(request):
         # should be changed eventually to show the specific user's feed
         shift_posts = Shift_post.objects.all()
         return render(request, 'hacks/myhome.html', {'shift_posts': shift_posts})
-    return render(request, 'hacks/home.html')
+    shift_posts = Shift_post.objects.all()
+    return render(request, 'hacks/home.html', {'shift_posts': shift_posts})
 
 
 def user_register(request):

@@ -9,13 +9,13 @@
 
 
 body {
-  overflow: hidden;
   margin: 0%;
   display: flex;
   flex-direction: column;
   font-family: 'Typo', sans-serif;
   font-style: italic;
   background-color: #66A182;
+  overflow-x: hidden;
 }
 
 .box {
@@ -135,6 +135,7 @@ input[type="submit"]:hover {
   justify-content: center;
   align-items: center;
   text-align: center;
+  overflow-y: auto;
 }
 .new-shift {
   background-color: #3C3C3C;
@@ -160,14 +161,15 @@ input[type="submit"]:hover {
   position: relative;
   width: 50%;
   height: 900px;
+  overflow-y: auto;
 }
 .shift-post {
   background-color: #3C3C3C;
   color: white;
-  padding: 5%;
+  padding: 3%;
   flex-direction: column;
   text-align: left;
-  margin: 4%;
+  margin: 2%;
   width: auto;
   height: auto;
   font-size: 20px;
