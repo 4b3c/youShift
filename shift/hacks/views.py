@@ -17,18 +17,24 @@ def home(request):
     r_form = UserCreationForm()
 
     if request.method == 'POST':
-        if 'l_form' in request.POST:
-            # Handle login form submission
-            l_form = AuthenticationForm(request.POST)
+        if 'login_submit' in request.POST:
+            l_form = AuthenticationForm(request, request.POST)
             if l_form.is_valid():
-                # Process login logic here
+                user = l_form.get_user()
+                login(request, user)
+                l_form = AuthenticationForm()
                 return redirect('profile')
-        elif 'r_form' in request.POST:
-            # Handle registration form submission
+            else:
+                print(l_form.errors)
+        elif 'register_submit' in request.POST:
             r_form = UserCreationForm(request.POST)
             if r_form.is_valid():
-                # Process registration logic here
+                user = r_form.save()
+                login(request, user) 
+                l_form = UserCreationForm()
                 return redirect('profile')
+            else:
+                print(r_form.errors)
 
     shift_posts = Shift_post.objects.all()
     return render(request, 'hacks/home.html', {'shift_posts': shift_posts, 'l_form': l_form, 'r_form': r_form})
