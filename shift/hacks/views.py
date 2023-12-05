@@ -12,8 +12,26 @@ def home(request):
         # should be changed eventually to show the specific user's feed
         shift_posts = Shift_post.objects.all()
         return render(request, 'hacks/myhome.html', {'shift_posts': shift_posts})
+
+    l_form = AuthenticationForm()
+    r_form = UserCreationForm()
+
+    if request.method == 'POST':
+        if 'l_form' in request.POST:
+            # Handle login form submission
+            l_form = AuthenticationForm(request.POST)
+            if l_form.is_valid():
+                # Process login logic here
+                return redirect('profile')
+        elif 'r_form' in request.POST:
+            # Handle registration form submission
+            r_form = UserCreationForm(request.POST)
+            if r_form.is_valid():
+                # Process registration logic here
+                return redirect('profile')
+
     shift_posts = Shift_post.objects.all()
-    return render(request, 'hacks/home.html', {'shift_posts': shift_posts})
+    return render(request, 'hacks/home.html', {'shift_posts': shift_posts, 'l_form': l_form, 'r_form': r_form})
 
 
 def user_register(request):

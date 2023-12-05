@@ -13,8 +13,8 @@
     <div class="box">
         <div class="title" style="left: 20px;">Shift</div>
         <div class="box" style="width: 416px; margin-right: 1%;">
-            <a href="{% url 'user_login' %}" class="btn">Log in</a>
-            <a href="{% url 'user_register' %}" class="btn">Sign up</a>
+            <a onclick="showLoginForm()" class="btn">Log in</a>
+            <a onclick="showRegistrationForm()" class="btn">Sign up</a>
         </div>
     </div>
 
@@ -30,6 +30,63 @@
         </div>
     </div>
 
+
+    <!-- Home page with separate modal containers for login and registration -->
+    <div class="modal-container" id="loginModalContainer">
+        <form method="post" action="{% url 'home' %}">
+            {% csrf_token %}
+            <h2 style="color: white;">Welcome back!</h2>
+            <input type="text" id="{{ l_form.username.id_for_label }}" name="{{ l_form.username.name }}" placeholder="Username" required>
+            <br>
+            <input type="password" id="{{ l_form.password.id_for_label }}" name="{{ l_form.password.name }}" placeholder="Password" required>
+            <br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <div class="modal-container" id="registerModalContainer">
+        <form method="post" action="{% url 'home' %}">
+            {% csrf_token %}
+            <h2 style="color: white;">Welcome!</h2>
+            <input type="text" id="{{ r_form.username.id_for_label }}" name="{{ r_form.username.name }}" placeholder="Username" required>
+            <br>
+            <input type="password" id="{{ r_form.password1.id_for_label }}" name="{{ r_form.password1.name }}" placeholder="Password" required>
+            <br>
+            <input type="password" id="{{ r_form.password1.id_for_label }}" name="{{ r_form.password2.name }}" placeholder="Confirm password" required>
+            <br>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+    <script>
+        function showLoginForm() {
+            document.getElementById('loginModalContainer').style.display = 'block';
+        }
+
+        function showRegistrationForm() {
+            document.getElementById('registerModalContainer').style.display = 'block';
+        }
+
+        function closeForms() {
+            document.getElementById('loginModalContainer').style.display = 'none';
+            document.getElementById('registerModalContainer').style.display = 'none';
+        }
+
+        document.getElementById('registerModalContainer').addEventListener('click', function(event) {
+            if (event.target.id === 'registerModalContainer') {
+                closeForms();
+            }
+        });
+
+        document.getElementById('loginModalContainer').addEventListener('click', function(event) {
+            if (event.target.id === 'loginModalContainer') {
+                closeForms();
+            }
+        });
+    </script>
+
+
 </body>
 
 </html>
+

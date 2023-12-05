@@ -195,3 +195,37 @@ textarea[type="text"] {
   border-radius: 5px;
   color: white;
 }
+
+
+
+
+.modal-container {
+  display: none;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  z-index: 1;
+}
+.close {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #3C3C3C;
+  border: 1px solid white;
+  border-radius: 15px;
+  color: white;
+  top: 70px;
+  right: 50px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.close:hover {
+  background-color: #C17171;
+}
