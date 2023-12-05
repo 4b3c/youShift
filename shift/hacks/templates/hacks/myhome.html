@@ -21,7 +21,8 @@
         <div class="post-container">
             {% for post in shift_posts %}
             <div class="shift-post">
-                <h1 style="margin-bottom: 5px;">{{ post.title }}</h1>
+                <h1 style="margin-bottom: 5px; margin-left: 5px">{{ post.title }}</h1>
+                <hr style="border: 3px solid #5C5C5C; width: 80%; margin: 0%;">
                 <p style="margin: 5px">{{ post.content }}</p>
                 <p style="margin: 5px">Created by {{ post.author.username }} on {{ post.created_at.month }} / {{ post.created_at.day }} / {{ post.created_at.year }}</p>
             </div>
