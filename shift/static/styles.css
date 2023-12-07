@@ -20,7 +20,7 @@ body {
 
 .box {
   background-color: #3C3C3C;
-  height: 160px;
+  height: 140px;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -28,12 +28,11 @@ body {
 }
 
 .title {
-  margin-right: 5%;
-  margin-left: 5%;
+  margin: 2%;
   cursor: default;
   position: relative;
 
-  font-size: 130px;
+  font-size: 110px;
   font-style: italic;
 
   color: #FFF;
