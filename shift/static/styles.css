@@ -153,6 +153,7 @@ input[type="submit"]:hover {
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  cursor: pointer;
 }
 .post-container {
   background-color: #66A182;
