@@ -14,7 +14,7 @@
         <div class="title" style="left: 20px;">Shift</div>
     </div>
 
-    <div class="container">
+    <div class="container" style="cursor: pointer;">
         <a onclick="showNewShiftForm()" class="new-shift">+</a>
         <a href="{% url 'profile' %}" class="new-shift" style="margin-bottom: 440px; font-size: 70px;">:P</a>
         <a href="{% url 'user_logout' %}" class="new-shift" style="margin-bottom: 140px; font-size: 60px;"><<</a>
@@ -54,7 +54,7 @@
 
         document.getElementById('newShiftModalContainer').addEventListener('click', function(event) {
             if (event.target.id === 'newShiftModalContainer') {
-                closeForms();
+                closeNewShiftForm();
             }
         });
     </script>
