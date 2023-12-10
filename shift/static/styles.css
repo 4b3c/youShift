@@ -230,3 +230,36 @@ textarea[type="text"] {
 .close:hover {
   background-color: #C17171;
 }
+
+
+
+
+
+
+
+
+.profile-card {
+  background-color: #3C3C3C;
+  color: white;
+  padding: 3%;
+  flex-direction: row;
+  text-align: left;
+  margin: 2%;
+  width: auto;
+  height: auto;
+  font-size: 20px;
+  font-style: normal;
+  border-radius: 10px;
+  border: 4px solid #5C5C5C;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+}
+.profile-picture {
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  background-color: red;
+  color: white;
+  margin: 2%;
+}

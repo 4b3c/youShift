@@ -8,8 +8,22 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 </head>
 
-<body style="text-align: center;">
-    <h1>Hello, {{ user.username }}!</h1>
+<body>
+
+    <div class="box">
+        <div class="title" style="left: 0px;">Shift</div>
+    </div>
+
+    <div class="container" style="cursor: pointer;">
+        <a href="{% url 'home' %}" class="new-shift" style="margin-bottom: 440px; font-size: 70px;">H</a>
+        <div class="post-container">
+            <div class="profile-card">
+                <div class="profile-picture"></div>
+                <h1>Hello, {{ user.username }}!</h1>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
