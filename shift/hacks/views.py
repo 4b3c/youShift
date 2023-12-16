@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib import messages
-from .forms import ShiftPostForm, ShifterProfileForm
+from .forms import ShifterCreationForm, UsernameAuthenticationForm, ShiftPostForm, ShifterProfileForm
 from .models import Shift_post
 
 import os
@@ -13,6 +12,7 @@ def home(request):
     if request.user.is_authenticated:
         # should be changed eventually to show the specific user's feed
         shift_posts = Shift_post.objects.all()
+        print(shift_posts[0].id)
         if request.method == 'POST':
             ns_form = ShiftPostForm(request.POST)
             if ns_form.is_valid():
@@ -24,28 +24,28 @@ def home(request):
             ns_form = ShiftPostForm()
         return render(request, 'hacks/myhome.html', {'shift_posts': shift_posts, 'ns_form': ns_form})
 
-    l_form = AuthenticationForm()
-    r_form = UserCreationForm()
+    l_form = UsernameAuthenticationForm()
+    r_form = ShifterCreationForm()
 
     if request.method == 'POST':
         if 'login_submit' in request.POST:
-            l_form = AuthenticationForm(request, request.POST)
+            l_form = UsernameAuthenticationForm(request, request.POST)
             if l_form.is_valid():
                 user = l_form.get_user()
                 login(request, user)
-                l_form = AuthenticationForm()
+                l_form = UsernameAuthenticationForm()
                 return redirect('profile')
             else:
                 print(l_form.errors)
         elif 'register_submit' in request.POST:
-            r_form = UserCreationForm(request.POST)
+            r_form = ShifterCreationForm(request.POST)
             if r_form.is_valid():
                 user = r_form.save()
                 login(request, user) 
-                l_form = UserCreationForm()
+                r_form = ShifterCreationForm()
                 return redirect('profile')
             else:
-                print(r_form.errors)
+                print("R_Form Errors: ", r_form.errors, "\nRequest POST: ", request.POST)
 
     shift_posts = Shift_post.objects.all()
     return render(request, 'hacks/home.html', {'shift_posts': shift_posts, 'l_form': l_form, 'r_form': r_form})
@@ -65,7 +65,12 @@ def profile(request):
         if pe_form.is_valid():
             profile_pics_dir = os.path.join(settings.MEDIA_ROOT, 'profile_pics')
             filename = f'{user.username}.jpg'
-            uploaded_img = request.FILES['profile_picture'].read()
+            print("REQUEST.FILES: ", request.FILES)
+            if request.FILES == {}:
+                with open(os.path.join(profile_pics_dir, filename), 'rb') as f:
+                    uploaded_img = f.read()
+            else:
+                uploaded_img = request.FILES['profile_picture'].read()
 
             if not os.path.exists(profile_pics_dir):
                 os.makedirs(profile_pics_dir)
