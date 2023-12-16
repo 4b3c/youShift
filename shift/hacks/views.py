@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib import messages
-from .forms import ShiftPostForm
+from .forms import ShiftPostForm, ShifterProfileForm
 from .models import Shift_post
 
 
@@ -56,4 +56,17 @@ def user_logout(request):
 
 
 def profile(request):
-    return render(request, 'hacks/profile.html')
+    user = request.user
+
+    if request.method == 'POST':
+        pe_form = ShifterProfileForm(request.POST, instance=user)
+        if pe_form.is_valid():
+            pe_form.save()
+            return redirect('profile')
+        else:
+            print(pe_form.errors)
+    else:
+        pe_form = ShifterProfileForm(instance=user)
+
+    shift_posts = Shift_post.objects.all()
+    return render(request, 'hacks/profile.html', {'shift_posts': shift_posts, 'pe_form': pe_form})
