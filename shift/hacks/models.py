@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 class Shifter(AbstractUser):
     email = models.EmailField(unique=True)
+    nickname = models.TextField(blank=True)
     bio = models.TextField(blank=True)
     join_date = models.DateTimeField(auto_now_add=True)
     profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)

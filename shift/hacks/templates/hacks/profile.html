@@ -21,8 +21,9 @@
             <div class="profile-card">
                 <div class="profile-picture"></div>
                 <div>
-                    <h1 style="font-size: 1.6em; margin-bottom: 3px">{{ user.username }}</h1>
-                    <p style="margin-top: 3px;">{{ user.bio }}</p>
+                    <h1 style="font-size: 1.6em; margin-bottom: 3px">{{ user.nickname }}</h1>
+                    <p style="font-size: 0.8em; margin: 3px; color: #CCCCCC;">{{ user.username }}</p>
+                    <p style="font-size: 0.8em; margin: 3px; color: #CCCCCC;">{{ user.bio }}</p>
                 </div>
             </div>
         </div>
@@ -33,6 +34,8 @@
         <form method="post" action="{% url 'profile' %}">
             {% csrf_token %}
             <h2 style="color: white;">Editing {{ user.username }}'s profile</h2>
+            <input type="text" id="{{ pe_form.nickname.id_for_label }}" name="{{ pe_form.nickname.name }}" placeholder="Nickname" required>{{ user.nickname }}
+            <br>
             <textarea type="text" id="{{ pe_form.bio.id_for_label }}" name="{{ pe_form.bio.name }}" placeholder="Bio" required>{{ user.bio }}</textarea>
             <br>
             <input type="submit" value="Save Profile">

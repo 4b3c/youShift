@@ -188,7 +188,7 @@ input[type="submit"]:hover {
 
 textarea[type="text"] {
   width: 90%;
-  height: 200px;
+  height: 150px;
   padding: 4%;
   margin: 5% 0;
   border: 1px solid white;
