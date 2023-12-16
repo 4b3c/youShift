@@ -1,8 +1,15 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
+
+class Shifter(AbstractUser):
+    email = models.EmailField(unique=True)
+    bio = models.TextField(blank=True)
+    join_date = models.DateTimeField(auto_now_add=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+    last_login = models.DateTimeField(null=True, blank=True)
 
 class Shift_post(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
+    author = models.ForeignKey(Shifter, on_delete=models.CASCADE, related_name='posts')
     title = models.CharField(max_length=255)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -12,7 +19,7 @@ class Shift_post(models.Model):
         return f"{self.author.username} - {self.created_at}"
 
 class Shift_comment(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(Shifter, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     child_comments = models.ManyToManyField('self', blank=True, symmetrical=False)

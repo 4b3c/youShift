@@ -252,7 +252,8 @@ textarea[type="text"] {
   border-radius: 10px;
   border: 4px solid #5C5C5C;
   display: flex;
-  justify-content: center;
+  justify-content: left;
+  align-items: center;
   text-decoration: none;
 }
 .profile-picture {
