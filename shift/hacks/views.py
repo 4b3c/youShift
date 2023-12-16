@@ -5,6 +5,8 @@ from django.contrib import messages
 from .forms import ShiftPostForm, ShifterProfileForm
 from .models import Shift_post
 
+import os
+from django.conf import settings
 
 
 def home(request):
@@ -59,8 +61,19 @@ def profile(request):
     user = request.user
 
     if request.method == 'POST':
-        pe_form = ShifterProfileForm(request.POST, instance=user)
+        pe_form = ShifterProfileForm(request.POST, request.FILES, instance=user)
         if pe_form.is_valid():
+            profile_pics_dir = os.path.join(settings.MEDIA_ROOT, 'profile_pics')
+            filename = f'{user.username}.jpg'
+            uploaded_img = request.FILES['profile_picture'].read()
+
+            if not os.path.exists(profile_pics_dir):
+                os.makedirs(profile_pics_dir)
+
+            with open(os.path.join(profile_pics_dir, filename), 'wb+') as f:
+                f.write(uploaded_img)
+
+            user.profile_picture = os.path.join('profile_pics', filename)
             pe_form.save()
             return redirect('profile')
         else:

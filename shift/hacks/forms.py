@@ -10,4 +10,4 @@ class ShiftPostForm(forms.ModelForm):
 class ShifterProfileForm(forms.ModelForm):
     class Meta:
         model = Shifter
-        fields = ['nickname', 'bio']
+        fields = ['nickname', 'bio', 'profile_picture']

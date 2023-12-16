@@ -153,3 +153,4 @@ cython_debug/
 
 
 credentials.txt
+*.jpg

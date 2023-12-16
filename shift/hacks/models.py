@@ -6,7 +6,7 @@ class Shifter(AbstractUser):
     nickname = models.TextField(blank=True)
     bio = models.TextField(blank=True)
     join_date = models.DateTimeField(auto_now_add=True)
-    profile_picture = models.ImageField(upload_to='profile_pics/', null=True, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pics/<username>/', null=True, blank=True)
     last_login = models.DateTimeField(null=True, blank=True)
 
 class Shift_post(models.Model):

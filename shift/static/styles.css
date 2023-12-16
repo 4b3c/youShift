@@ -196,8 +196,15 @@ textarea[type="text"] {
   border-radius: 5px;
   color: white;
 }
-
-
+input[type="file"] {
+  width: 90%;
+  padding: 4%;
+  margin: 5% 0;
+  border: 1px solid white;
+  background-color: #3C3C3C;
+  border-radius: 5px;
+  color: white;
+}
 
 
 .modal-container {

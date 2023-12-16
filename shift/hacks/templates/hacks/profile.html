@@ -19,7 +19,10 @@
         <a onclick="showEditProfileForm()" class="new-shift" style="margin-bottom: 440px; font-size: 50px;">⚙️</a>
         <div class="post-container">
             <div class="profile-card">
-                <div class="profile-picture"></div>
+                <div class="profile-picture" style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
+                    <img src="{{ user.profile_picture.url }}" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+
                 <div>
                     <h1 style="font-size: 1.6em; margin-bottom: 3px">{{ user.nickname }}</h1>
                     <p style="font-size: 0.8em; margin: 3px; color: #CCCCCC;">{{ user.username }}</p>
@@ -29,14 +32,24 @@
         </div>
     </div>
 
-    <!-- Home page with a modal container for creating posts -->
+    <!-- Home page with a modal container for editing one's profile -->
     <div class="modal-container" id="profileEditModalContainer">
-        <form method="post" action="{% url 'profile' %}">
+        <form method="post" enctype="multipart/form-data" action="{% url 'profile' %}">
             {% csrf_token %}
-            <h2 style="color: white;">Editing {{ user.username }}'s profile</h2>
-            <input type="text" id="{{ pe_form.nickname.id_for_label }}" name="{{ pe_form.nickname.name }}" placeholder="Nickname" required>{{ user.nickname }}
+            <h2 style="color: white;">Editing profile</h2>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin: 20px;">
+                <div class="profile-picture" style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
+                    <img src="{{ user.profile_picture.url }}" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="text-align: left; font-family: sans-serif; font-weight: normal; font-style: normal;">
+                    <div style="font-size: 1em; color: white;">Change Profile Picture</div>
+                    <input type="file" id="{{ pe_form.profile_picture.id_for_label }}" name="{{ pe_form.profile_picture.name }}" accept="image/*" style="height: 20px; width: 180px;">
+                    <br>
+                </div>
+            </div>
+            <textarea type="text" id="{{ pe_form.nickname.id_for_label }}" name="{{ pe_form.nickname.name }}" placeholder="New nickname" style="height: 20px;">{{ user.nickname }}</textarea>
             <br>
-            <textarea type="text" id="{{ pe_form.bio.id_for_label }}" name="{{ pe_form.bio.name }}" placeholder="Bio" required>{{ user.bio }}</textarea>
+            <textarea type="text" id="{{ pe_form.bio.id_for_label }}" name="{{ pe_form.bio.name }}" placeholder="New bio" style="height: 90px;">{{ user.bio }}</textarea>
             <br>
             <input type="submit" value="Save Profile">
         </form>
