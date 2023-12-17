@@ -16,7 +16,7 @@
 
     <div class="container" style="cursor: pointer;">
         <a onclick="showNewShiftForm()" class="new-shift">+</a>
-        <a href="{% url 'profile' %}" class="new-shift" style="margin-bottom: 440px; font-size: 70px;">:P</a>
+        <a href="{% url 'profile' username=user.username %}" class="new-shift" style="margin-bottom: 440px; font-size: 70px;">:P</a>
         <a href="{% url 'user_logout' %}" class="new-shift" style="margin-bottom: 140px; font-size: 60px;"><<</a>
         <div class="post-container">
             {% for post in shift_posts %}

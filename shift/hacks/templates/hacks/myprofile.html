@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Profile</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+
+<body>
+
+    <div class="box">
+        <div class="title" style="left: 0px;">Shift</div>
+    </div>
+
+    <div class="container" style="cursor: pointer;">
+        <a href="{% url 'home' %}" class="new-shift" style="font-size: 50px;">🏠</a>
+        <a onclick="showEditProfileForm()" class="new-shift" style="margin-bottom: 440px; font-size: 50px;">⚙️</a>
+        <div class="post-container">
+            <div class="profile-card">
+                <div class="profile-picture" style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
+                    {% if user.profile_picture %}
+                        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+                    {% else %}
+                        <img src="{% static 'default_pfp.png' %}" alt="Default Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+                    {% endif %}
+                </div>
+
+                <div>
+                    {% if user.nickname %}
+                        <h1 style="font-size: 1.6em; margin-bottom: 3px">{{ user.nickname }}</h1>
+                        <p style="font-size: 0.8em; margin: 3px; color: #CCCCCC;">{{ user.username }}</p>
+                    {% else %}
+                        <h1 style="font-size: 1.6em; margin-bottom: 3px">{{ user.username }}</h1>
+                    {% endif %}
+                    <p style="font-size: 0.8em; margin: 3px; color: #CCCCCC;">{{ user.bio }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home page with a modal container for editing one's profile -->
+    <div class="modal-container" id="profileEditModalContainer">
+        <form method="post" enctype="multipart/form-data" action="{% url 'profile' username=user.username %}">
+            {% csrf_token %}
+            <h2 style="color: white;">Editing profile</h2>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin: 20px;">
+                <div class="profile-picture" style="width: 100px; height: 100px; overflow: hidden; border-radius: 50%;">
+                    {% if user.profile_picture %}
+                        <img src="{{ user.profile_picture.url }}" alt="Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+                    {% else %}
+                        <img src="{% static 'default_pfp.png' %}" alt="Default Profile Picture" style="width: 100%; height: 100%; object-fit: cover;">
+                    {% endif %}
+                </div>
+                <div style="text-align: left; font-family: sans-serif; font-weight: normal; font-style: normal;">
+                    <div style="font-size: 1em; color: white;">Change Profile Picture</div>
+                    <input type="file" id="{{ pe_form.profile_picture.id_for_label }}" name="{{ pe_form.profile_picture.name }}" accept="image/*" style="height: 20px; width: 180px;">
+                    <br>
+                </div>
+            </div>
+            <textarea type="text" id="{{ pe_form.nickname.id_for_label }}" name="{{ pe_form.nickname.name }}" placeholder="New nickname" style="height: 20px;">{{ user.nickname }}</textarea>
+            <br>
+            <textarea type="text" id="{{ pe_form.bio.id_for_label }}" name="{{ pe_form.bio.name }}" placeholder="New bio" style="height: 90px;">{{ user.bio }}</textarea>
+            <br>
+            <input type="submit" value="Save Profile">
+        </form>
+    </div>
+
+    <script>
+        function showEditProfileForm() {
+            document.getElementById('profileEditModalContainer').style.display = 'block';
+        }
+
+        function closeEditProfileForm() {
+            document.getElementById('profileEditModalContainer').style.display = 'none';
+        }
+
+        document.getElementById('profileEditModalContainer').addEventListener('click', function(event) {
+            if (event.target.id === 'profileEditModalContainer') {
+                closeEditProfileForm();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from .forms import ShifterCreationForm, UsernameAuthenticationForm, ShiftPostForm, ShifterProfileForm
-from .models import Shift_post
+from .models import Shift_post, Shifter
 
 import os
 from django.conf import settings
@@ -57,37 +57,40 @@ def user_logout(request):
     return redirect('home')
 
 
-def profile(request):
+def profile(request, username):
     user = request.user
+    if user.username == username:
 
-    if request.method == 'POST':
-        pe_form = ShifterProfileForm(request.POST, request.FILES, instance=user)
-        if pe_form.is_valid():
-            profile_pics_dir = os.path.join(settings.MEDIA_ROOT, 'profile_pics')
-            filename = f'{user.username}.jpg'
-            print("REQUEST.FILES: ", request.FILES)
-            if request.FILES == {}:
-                with open(os.path.join(profile_pics_dir, filename), 'rb') as f:
-                    uploaded_img = f.read()
+        if request.method == 'POST':
+            pe_form = ShifterProfileForm(request.POST, request.FILES, instance=user)
+            if pe_form.is_valid():
+                profile_pics_dir = os.path.join(settings.MEDIA_ROOT, 'profile_pics')
+                filename = f'{user.username}.jpg'
+                print("REQUEST.FILES: ", request.FILES)
+                if request.FILES == {}:
+                    with open(os.path.join(profile_pics_dir, filename), 'rb') as f:
+                        uploaded_img = f.read()
+                else:
+                    uploaded_img = request.FILES['profile_picture'].read()
+
+                if not os.path.exists(profile_pics_dir):
+                    os.makedirs(profile_pics_dir)
+
+                with open(os.path.join(profile_pics_dir, filename), 'wb+') as f:
+                    f.write(uploaded_img)
+
+                user.profile_picture = os.path.join('profile_pics', filename)
+                pe_form.save()
+                return redirect('profile')
             else:
-                uploaded_img = request.FILES['profile_picture'].read()
-
-            if not os.path.exists(profile_pics_dir):
-                os.makedirs(profile_pics_dir)
-
-            with open(os.path.join(profile_pics_dir, filename), 'wb+') as f:
-                f.write(uploaded_img)
-
-            user.profile_picture = os.path.join('profile_pics', filename)
-            pe_form.save()
-            return redirect('profile')
+                print(pe_form.errors)
         else:
-            print(pe_form.errors)
-    else:
-        pe_form = ShifterProfileForm(instance=user)
+            pe_form = ShifterProfileForm(instance=user)
 
-    shift_posts = Shift_post.objects.all()
-    return render(request, 'hacks/profile.html', {'shift_posts': shift_posts, 'pe_form': pe_form})
+        return render(request, 'hacks/myprofile.html', {'user': user, 'pe_form': pe_form})
+    else:
+        user = get_object_or_404(Shifter, username=username)
+        return render(request, 'hacks/profile.html', {'user': user})
 
 
 
