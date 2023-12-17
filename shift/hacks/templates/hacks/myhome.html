@@ -21,7 +21,7 @@
         <div class="post-container">
             {% for post in shift_posts %}
             <div class="shift-post">
-                <h1 style="margin: 5px;">{{ post.title }}</h1>
+                <a href="{% url 'post' post_id=post.id %}" class="post-title">{{ post.title }}</a>
                 <hr style="border: 3px solid #5C5C5C; width: 80%; margin: 0%;">
                 <p style="margin: 5px">{{ post.content }}</p>
                 <p style="margin: 5px">Created by {{ post.author.username }} on {{ post.created_at.month }} / {{ post.created_at.day }} / {{ post.created_at.year }}</p>

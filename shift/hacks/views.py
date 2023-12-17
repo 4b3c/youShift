@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from .forms import ShifterCreationForm, UsernameAuthenticationForm, ShiftPostForm, ShifterProfileForm
@@ -88,3 +88,10 @@ def profile(request):
 
     shift_posts = Shift_post.objects.all()
     return render(request, 'hacks/profile.html', {'shift_posts': shift_posts, 'pe_form': pe_form})
+
+
+
+
+def post(request, post_id):
+    post = get_object_or_404(Shift_post, pk=post_id)
+    return render(request, 'hacks/post.html', {'post': post})
