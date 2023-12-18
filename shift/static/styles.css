@@ -153,6 +153,10 @@ input[type="submit"]:hover {
   justify-content: center;
   text-decoration: none;
   cursor: pointer;
+  border: solid 3px #66A182;
+}
+.new-shift:hover {
+  border: solid 3px #3C3C3C;
 }
 .post-container {
   background-color: #66A182;
