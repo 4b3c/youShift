@@ -10,9 +10,20 @@
 
 <body>
 
-	<h1>{{ post.title }}</h1>
-	<p>{{ post.content }}</p>
-	<p>Author: {{ post.author }}</p>
+	<div class="box">
+        <div class="title" style="left: 0px;">Shift</div>
+    </div>
+
+    <div class="container" style="cursor: pointer;">
+        <a href="{% url 'home' %}" class="new-shift" style="font-size: 50px;">🏠</a>
+        <div class="post-container">
+        	<div class="post">
+	        	<h1 style="text-align: left; margin: 2%; color: #3C3C3C; text-decoration: none;">{{ post.title }}</h1>
+	        	<p style="text-align: left; margin: 2%; color: #3C3C3C; text-decoration: none;">{{ post.author }}</p>  
+				<p style="text-align: left; margin: 2%; color: #3C3C3C; text-decoration: none;">{{ post.content }}</p>
+			</div>
+        </div>
+    </div>
 
 </body>
 
